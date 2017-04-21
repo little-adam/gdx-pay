@@ -30,7 +30,9 @@
 apply plugin: 'maven-publish'
 apply plugin: 'maven'
 apply plugin: 'signing'
-apply from: rootProject.file('publish_to_maven_repo.gradle')
+
+def currentDir = buildscript.sourceFile.getParentFile()
+apply from: "$currentDir/publish_to_maven_repo.gradle"
 
 ext.mavenDeploymentVersion = version
 

@@ -4,7 +4,9 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 apply plugin : 'java'
-apply from : '../publish_java.gradle'
+
+def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
+apply from: "$parentDir/publish_java.gradle"
 
 dependencies {
     compile "com.google.code.findbugs:jsr305:${jsr305Version}"
