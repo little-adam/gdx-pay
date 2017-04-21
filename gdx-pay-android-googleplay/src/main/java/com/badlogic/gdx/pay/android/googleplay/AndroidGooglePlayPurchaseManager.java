@@ -98,6 +98,10 @@ public class AndroidGooglePlayPurchaseManager implements PurchaseManager, Purcha
         PurchaseSystem.setManager(this);
     }
 
+    public GoogleInAppBillingService getGoogleInAppBillingService(){
+		return googleInAppBillingService;
+	}
+
     @Override
     public void install(final PurchaseObserver observer, final PurchaseManagerConfig purchaseManagerConfig, final boolean autoFetchInformation) {
         this.observer = observer;
