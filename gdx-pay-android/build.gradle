@@ -1,5 +1,7 @@
 apply plugin : 'java'
-apply from : '../publish_java.gradle'
+
+def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
+apply from: "$parentDir/publish_java.gradle"
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
