@@ -205,8 +205,16 @@ public class V3GoogleInAppBillingService implements GoogleInAppBillingService {
     private void internalStartPurchaseRequest(String productId, String type, PurchaseRequestCallback listener, boolean retryOnError) {
         PendingIntent pendingIntent;
         try {
+			// send buy intent
             pendingIntent = getBuyIntent(productId, type);
-        } catch (RemoteException | RuntimeException e) {
+			startPurchaseIntentSenderForResult(productId, pendingIntent, listener);
+        }
+		catch (AndroidGooglePlayException e) {
+			// already owned
+			listener.purchaseError(new GdxPayException(e.getMessage(), e));
+		}
+        catch (RemoteException | RuntimeException e) {
+			// other exceptions
             if (retryOnError) {
                 reconnectToHandleDeadObjectExceptions();
                 schedulePurchaseRetry(productId, listener);
@@ -216,7 +224,6 @@ public class V3GoogleInAppBillingService implements GoogleInAppBillingService {
             listener.purchaseError(new GdxPayException("startPurchaseRequest failed at getBuyIntent() for product: " + productId, e));
             return;
         }
-        startPurchaseIntentSenderForResult(productId, pendingIntent, listener);
     }
 
     private void schedulePurchaseRetry(final String productId, final PurchaseRequestCallback listener) {
@@ -294,17 +301,22 @@ public class V3GoogleInAppBillingService implements GoogleInAppBillingService {
 
         ResponseCode responseCode = ResponseCode.findByCode(code);
 
-        if (responseCode != ResponseCode.BILLING_RESPONSE_RESULT_OK) {
+        if (responseCode == ResponseCode.BILLING_RESPONSE_RESULT_OK){
+			// get buy intent
+			PendingIntent pendingIntent = responseData.getParcelable(BUY_INTENT);
+
+			if (pendingIntent == null) {
+				throw new GdxPayException("Missing value for key: " + BUY_INTENT + "in getBuyIntent() response: " + responseData);
+			}
+			return pendingIntent;
+		}
+		else if(responseCode == ResponseCode.BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED) {
+			throw new AndroidGooglePlayException(responseCode);
+		}
+		else{
             // TODO: unit test this.
             throw new GdxPayException("Unexpected getBuyIntent() responseCode: " + responseCode + " with response data: " + responseData);
         }
-
-        PendingIntent pendingIntent = responseData.getParcelable(BUY_INTENT);
-
-        if (pendingIntent == null) {
-            throw new GdxPayException("Missing value for key: " + BUY_INTENT + "in getBuyIntent() response: " + responseData);
-        }
-        return pendingIntent;
     }
 
     private Map<String, Information> fetchSkuDetails(List<String> productIds, String productType) {
@@ -482,4 +494,16 @@ public class V3GoogleInAppBillingService implements GoogleInAppBillingService {
     private int consumePurchaseToken(String token) throws RemoteException {
         return billingService().consumePurchase(BILLING_API_VERSION, installerPackageName, token);
     }
+
+    public static class AndroidGooglePlayException extends RuntimeException{
+		private ResponseCode responseCode;
+
+		public AndroidGooglePlayException(ResponseCode responseCode){
+			this.responseCode = responseCode;
+		}
+
+		public ResponseCode getResponseCode(){
+			return responseCode;
+		}
+	}
 }
