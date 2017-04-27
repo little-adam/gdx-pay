@@ -313,6 +313,9 @@ public class V3GoogleInAppBillingService implements GoogleInAppBillingService {
 		else if(responseCode == ResponseCode.BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED) {
 			throw new AndroidGooglePlayException(responseCode);
 		}
+		else if(responseCode == ResponseCode.BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE) {
+			throw new AndroidGooglePlayException(responseCode);
+		}
 		else{
             // TODO: unit test this.
             throw new GdxPayException("Unexpected getBuyIntent() responseCode: " + responseCode + " with response data: " + responseData);
