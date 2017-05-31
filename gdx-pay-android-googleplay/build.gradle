@@ -50,7 +50,7 @@ dependencies {
     compile "com.google.code.findbugs:jsr305:${jsr305Version}"
 
     // versions >= 24.0.0 do not work with minSdkVersion=8.0
-    compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:support-v4:23.0.0'
 }
 
 tasks.withType(Test) {
