@@ -15,7 +15,14 @@ sourceSets {
 }
 
 dependencies {
-    compile project(':gdx-pay')
+    if(artifactVersion == "project") {
+        compile project(':gdx-pay')
+    }
+    else{
+        compile "com.badlogicgames.gdxpay:gdx-pay:$gdxPayVersion"
+    }
+
     compile "com.badlogicgames.gdx:gdx:${gdxVersion}"
+
     testCompile "junit:junit:${junitVersion}"
 }

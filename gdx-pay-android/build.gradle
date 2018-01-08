@@ -15,7 +15,12 @@ sourceSets {
 }
 
 dependencies {
-    compile project(':gdx-pay-client')
+    if(artifactVersion == "project") {
+        compile project(':gdx-pay-client')
+    }
+    else{
+        compile "com.badlogicgames.gdxpay:gdx-pay-client:$gdxPayVersion"
+    }
 
     compile "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
 
