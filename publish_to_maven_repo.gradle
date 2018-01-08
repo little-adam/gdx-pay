@@ -35,6 +35,7 @@ def isSnapshotBuild() {
     return project.hasProperty("SNAPSHOT")
 }
 
+/*
 afterEvaluate { project ->
     uploadArchives {
         repositories {
@@ -100,3 +101,4 @@ afterEvaluate { project ->
         sign configurations.archives
     }
 }
+*/

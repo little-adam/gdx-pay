@@ -70,6 +70,7 @@ def getRepositoryUrl() {
     return getSnapshotRepositoryUrl()
 }
 
+/*
 publishing {
     publications {
         maven(MavenPublication) {
@@ -113,3 +114,4 @@ publishing {
         }
     }
 }
+*/

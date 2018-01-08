@@ -19,7 +19,7 @@ dependencies {
         compile project(':gdx-pay')
     }
     else{
-        compile "com.badlogicgames.gdxpay:gdx-pay:$gdxPayVersion"
+        compile "com.xuexue:gdx-pay:$artifactVersion"
     }
 
     compile "com.badlogicgames.gdx:gdx:${gdxVersion}"

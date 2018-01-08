@@ -12,3 +12,16 @@ dependencies {
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.assertj:assertj-core:${assertJVersion}"
 }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: privateRepository) {
+                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
+            }
+            pom.version = "1.4.8"
+            pom.artifactId = "gdx-pay"
+            pom.groupId = "com.xuexue"
+        }
+    }
+}
