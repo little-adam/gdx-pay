@@ -19,10 +19,23 @@ dependencies {
         compile project(':gdx-pay-client')
     }
     else{
-        compile "com.badlogicgames.gdxpay:gdx-pay-client:$gdxPayVersion"
+        compile "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
     compile "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
 
     compile fileTree(dir: 'lib', include: ['*.jar'])
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: privateRepository) {
+                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
+            }
+            pom.version = artifactVersion
+            pom.artifactId = "gdx-pay-android"
+            pom.groupId = "com.xuexue"
+        }
+    }
 }

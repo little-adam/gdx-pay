@@ -11,8 +11,21 @@ dependencies {
         compile project(':gdx-pay-client')
     }
     else{
-        compile "com.badlogicgames.gdxpay:gdx-pay-client:$gdxPayVersion"
+        compile "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
     compile files(moe.sdk.getCoreJar(), moe.getPlatformJar())
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: privateRepository) {
+                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
+            }
+            pom.version = artifactVersion
+            pom.artifactId = "gdx-pay-iosmoe-apple"
+            pom.groupId = "com.xuexue"
+        }
+    }
 }

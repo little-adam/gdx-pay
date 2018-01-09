@@ -19,7 +19,7 @@ uploadArchives {
             repository(url: privateRepository) {
                 authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
             }
-            pom.version = "1.4.8"
+            pom.version = artifactVersion
             pom.artifactId = "gdx-pay"
             pom.groupId = "com.xuexue"
         }

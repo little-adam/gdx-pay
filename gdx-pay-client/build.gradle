@@ -26,3 +26,16 @@ dependencies {
 
     testCompile "junit:junit:${junitVersion}"
 }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: privateRepository) {
+                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
+            }
+            pom.version = artifactVersion
+            pom.artifactId = "gdx-pay-client"
+            pom.groupId = "com.xuexue"
+        }
+    }
+}

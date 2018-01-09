@@ -45,7 +45,7 @@ dependencies {
         compile project(':gdx-pay-client')
     }
     else{
-        compile "com.badlogicgames.gdxpay:gdx-pay-client:$gdxPayVersion"
+        compile "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
     testCompile "junit:junit:${junitVersion}"
@@ -109,3 +109,15 @@ android.libraryVariants.all { variant ->
     artifacts.add('archives', task);
 }
 
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: privateRepository) {
+                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
+            }
+            pom.version = artifactVersion
+            pom.artifactId = "gdx-pay-android-googleplay"
+            pom.groupId = "com.xuexue"
+        }
+    }
+}
