@@ -7,7 +7,7 @@ targetCompatibility = 1.6
 
 
 dependencies {
-    if(artifactVersion == "project") {
+    if(!useMavenArtifact.toBoolean()) {
         compile project(':gdx-pay-client')
     }
     else{

@@ -15,11 +15,11 @@ sourceSets {
 }
 
 dependencies {
-    if(artifactVersion == "project") {
+    if(!useMavenArtifact.toBoolean()) {
         compile project(':gdx-pay')
     }
     else{
-        compile "com.xuexue:gdx-pay:$artifactVersion"
+        compile "com.xuexue:gdx-pay:$mavenArtifactVersion"
     }
 
     compile "com.badlogicgames.gdx:gdx:${gdxVersion}"

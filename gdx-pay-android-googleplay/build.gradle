@@ -41,7 +41,7 @@ configurations {
 }
 
 dependencies {
-    if(artifactVersion == "project") {
+    if(!useMavenArtifact.toBoolean()) {
         compile project(':gdx-pay-client')
     }
     else{
