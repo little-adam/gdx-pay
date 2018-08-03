@@ -6,22 +6,11 @@ targetCompatibility = 1.6
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
 apply from: "$parentDir/publish_java.gradle"
 
+ext.artifactId = "gdx-pay"
+
 dependencies {
     compile "com.google.code.findbugs:jsr305:${jsr305Version}"
 
     testCompile "junit:junit:${junitVersion}"
     testCompile "org.assertj:assertj-core:${assertJVersion}"
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: privateRepository) {
-                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
-            }
-            pom.version = artifactVersion
-            pom.artifactId = "gdx-pay"
-            pom.groupId = "com.xuexue"
-        }
-    }
 }

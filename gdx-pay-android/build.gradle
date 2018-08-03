@@ -3,6 +3,8 @@ apply plugin : 'java'
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
 apply from: "$parentDir/publish_java.gradle"
 
+ext.artifactId = "gdx-pay-android"
+
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
@@ -25,17 +27,4 @@ dependencies {
     compile "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
 
     compile fileTree(dir: 'lib', include: ['*.jar'])
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: privateRepository) {
-                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
-            }
-            pom.version = artifactVersion
-            pom.artifactId = "gdx-pay-android"
-            pom.groupId = "com.xuexue"
-        }
-    }
 }

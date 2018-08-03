@@ -16,6 +16,8 @@ apply plugin: 'de.mobilej.unmock'
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
 apply from: "$parentDir/publish_android.gradle"
 
+ext.artifactId = "gdx-pay-android-googleplay"
+
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -107,17 +109,4 @@ android.libraryVariants.all { variant ->
     task.dependsOn variant.javaCompile
     task.from variant.javaCompile.destinationDir
     artifacts.add('archives', task);
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: privateRepository) {
-                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
-            }
-            pom.version = artifactVersion
-            pom.artifactId = "gdx-pay-android-googleplay"
-            pom.groupId = "com.xuexue"
-        }
-    }
 }
