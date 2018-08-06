@@ -1,3 +1,5 @@
+ext.artifactId = "gdx-pay-android-googleplay"
+
 buildscript {
 	repositories {
 		jcenter()
@@ -15,8 +17,6 @@ apply plugin: 'de.mobilej.unmock'
 
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
 apply from: "$parentDir/publish_android.gradle"
-
-ext.artifactId = "gdx-pay-android-googleplay"
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7

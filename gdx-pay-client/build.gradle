@@ -1,9 +1,9 @@
+ext.artifactId = "gdx-pay-client"
+
 apply plugin : 'java'
 
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
 apply from: "$parentDir/publish_java.gradle"
-
-ext.artifactId = "gdx-pay-client"
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
