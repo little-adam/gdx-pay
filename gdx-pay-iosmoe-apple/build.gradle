@@ -1,5 +1,7 @@
 ext.artifactId = "gdx-pay-iosmoe-apple"
 
+apply from: "$gradleDir/lib_maven.gradle"
+
 apply plugin : 'java'
 apply plugin : 'moe-sdk'
 apply from : '../publish_java.gradle'

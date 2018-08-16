@@ -1,5 +1,7 @@
 ext.artifactId = "gdx-pay"
 
+apply from: "$gradleDir/lib_maven.gradle"
+
 apply plugin: 'java'
 
 sourceCompatibility = 1.6

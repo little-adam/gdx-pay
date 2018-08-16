@@ -1,5 +1,7 @@
 ext.artifactId = "gdx-pay-client"
 
+apply from: "$gradleDir/lib_maven.gradle"
+
 apply plugin : 'java'
 
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
