@@ -1,8 +1,4 @@
-ext.artifactId = "gdx-pay-client"
-
-apply from: "$gradleDir/lib_maven.gradle"
-
-apply plugin : 'java-library'
+apply plugin : 'java'
 
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
 apply from: "$parentDir/publish_java.gradle"
@@ -20,13 +16,26 @@ sourceSets {
 
 dependencies {
     if(artifactVersion == "project") {
-        api project(':gdx-pay')
+        compile project(':gdx-pay')
     }
     else{
-        api "com.xuexue:gdx-pay:$artifactVersion"
+        compile "com.xuexue:gdx-pay:$artifactVersion"
     }
 
     compile "com.badlogicgames.gdx:gdx:${gdxVersion}"
 
     testCompile "junit:junit:${junitVersion}"
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: privateRepository) {
+                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
+            }
+            pom.version = artifactVersion
+            pom.artifactId = "gdx-pay-client"
+            pom.groupId = "com.xuexue"
+        }
+    }
 }

@@ -1,8 +1,4 @@
-ext.artifactId = "gdx-pay-android"
-
-apply from: "$gradleDir/lib_maven.gradle"
-
-apply plugin : 'java-library'
+apply plugin : 'java'
 
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
 apply from: "$parentDir/publish_java.gradle"
@@ -20,13 +16,26 @@ sourceSets {
 
 dependencies {
     if(artifactVersion == "project") {
-        api project(':gdx-pay-client')
+        compile project(':gdx-pay-client')
     }
     else{
-        api "com.xuexue:gdx-pay-client:$artifactVersion"
+        compile "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
     compile "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
 
     compile fileTree(dir: 'lib', include: ['*.jar'])
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: privateRepository) {
+                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
+            }
+            pom.version = artifactVersion
+            pom.artifactId = "gdx-pay-android"
+            pom.groupId = "com.xuexue"
+        }
+    }
 }

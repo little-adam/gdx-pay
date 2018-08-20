@@ -1,17 +1,13 @@
-ext.artifactId = "gdx-pay-android-googleplay"
-
-apply from: "$gradleDir/lib_maven.gradle"
-
 buildscript {
-	repositories {
-		jcenter()
-		mavenCentral()
-		maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-		maven { url "https://oss.sonatype.org/content/repositories/releases/" }
-	}
-	dependencies {
-		classpath "de.mobilej.unmock:UnMockPlugin:0.3.6"
-	}
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+    }
+    dependencies {
+        classpath "de.mobilej.unmock:UnMockPlugin:0.3.6"
+    }
 }
 
 apply plugin: 'com.android.library'
@@ -46,12 +42,10 @@ configurations {
 
 dependencies {
     if(artifactVersion == "project") {
-        api project(':gdx-pay-android')
+        compile project(':gdx-pay-client')
     }
     else{
-        api "com.xuexue:gdx-pay:$artifactVersion"
-        api "com.xuexue:gdx-pay-client:$artifactVersion"
-        api "com.xuexue:gdx-pay-android:$artifactVersion"
+        compile "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
     testCompile "junit:junit:${junitVersion}"
@@ -113,4 +107,17 @@ android.libraryVariants.all { variant ->
     task.dependsOn variant.javaCompile
     task.from variant.javaCompile.destinationDir
     artifacts.add('archives', task);
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: privateRepository) {
+                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
+            }
+            pom.version = artifactVersion
+            pom.artifactId = "gdx-pay-android-googleplay"
+            pom.groupId = "com.xuexue"
+        }
+    }
 }
