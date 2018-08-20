@@ -1,3 +1,5 @@
+ext.artifactId = "gdx-pay-android-googleplay"
+
 buildscript {
     repositories {
         jcenter()
@@ -109,15 +111,5 @@ android.libraryVariants.all { variant ->
     artifacts.add('archives', task);
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: privateRepository) {
-                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
-            }
-            pom.version = artifactVersion
-            pom.artifactId = "gdx-pay-android-googleplay"
-            pom.groupId = "com.xuexue"
-        }
-    }
-}
+apply from: "$gradleDir/lib_maven.gradle"
+

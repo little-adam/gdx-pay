@@ -1,10 +1,12 @@
-apply plugin: 'java'
+ext.artifactId = "gdx-pay"
+
+apply plugin: 'java-library'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
-def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
-apply from: "$parentDir/publish_java.gradle"
+//def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
+//apply from: "$parentDir/publish_java.gradle"
 
 dependencies {
     compile "com.google.code.findbugs:jsr305:${jsr305Version}"
@@ -13,15 +15,4 @@ dependencies {
     testCompile "org.assertj:assertj-core:${assertJVersion}"
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: privateRepository) {
-                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
-            }
-            pom.version = artifactVersion
-            pom.artifactId = "gdx-pay"
-            pom.groupId = "com.xuexue"
-        }
-    }
-}
+apply from: "$gradleDir/lib_maven.gradle"

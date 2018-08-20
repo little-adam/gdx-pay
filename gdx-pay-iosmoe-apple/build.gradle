@@ -1,35 +1,23 @@
 ext.artifactId = "gdx-pay-iosmoe-apple"
 
-apply from: "$gradleDir/lib_maven.gradle"
-
-apply plugin : 'java'
+apply plugin : 'java-library'
 apply plugin : 'moe-sdk'
-def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
-apply from : "$parentDir/publish_java.gradle"
+
+// def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
+// apply from : "$parentDir/publish_java.gradle"
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 dependencies {
     if(artifactVersion == "project") {
-        compile project(':gdx-pay-client')
+        api project(':gdx-pay-client')
     }
     else{
-        compile "com.xuexue:gdx-pay-client:$artifactVersion"
+        api "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
-    compile files(moe.sdk.getCoreJar(), moe.getPlatformJar())
+    api files(moe.sdk.getCoreJar(), moe.getPlatformJar())
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: privateRepository) {
-                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
-            }
-            pom.version = artifactVersion
-            pom.artifactId = "gdx-pay-iosmoe-apple"
-            pom.groupId = "com.xuexue"
-        }
-    }
-}
+apply from: "$gradleDir/lib_maven.gradle"

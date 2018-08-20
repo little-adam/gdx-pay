@@ -1,7 +1,9 @@
-apply plugin : 'java'
+ext.artifactId = "gdx-pay-client"
 
-def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
-apply from: "$parentDir/publish_java.gradle"
+apply plugin : 'java-library'
+
+//def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
+//apply from: "$parentDir/publish_java.gradle"
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -27,15 +29,4 @@ dependencies {
     testCompile "junit:junit:${junitVersion}"
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: privateRepository) {
-                authentication(userName: privateRepositoryUser, password: privateRepositoryPassword)
-            }
-            pom.version = artifactVersion
-            pom.artifactId = "gdx-pay-client"
-            pom.groupId = "com.xuexue"
-        }
-    }
-}
+apply from: "$gradleDir/lib_maven.gradle"
