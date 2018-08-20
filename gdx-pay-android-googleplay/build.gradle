@@ -46,10 +46,12 @@ configurations {
 
 dependencies {
     if(artifactVersion == "project") {
-        compile project(':gdx-pay-client')
+        api project(':gdx-pay-android')
     }
     else{
-        compile "com.xuexue:gdx-pay-client:$artifactVersion"
+        api "com.xuexue:gdx-pay:$artifactVersion"
+        api "com.xuexue:gdx-pay-client:$artifactVersion"
+        api "com.xuexue:gdx-pay-android:$artifactVersion"
     }
 
     testCompile "junit:junit:${junitVersion}"

@@ -2,7 +2,7 @@ ext.artifactId = "gdx-pay-android"
 
 apply from: "$gradleDir/lib_maven.gradle"
 
-apply plugin : 'java'
+apply plugin : 'java-library'
 
 def parentDir = buildscript.sourceFile.getParentFile().getParentFile()
 apply from: "$parentDir/publish_java.gradle"
@@ -20,10 +20,10 @@ sourceSets {
 
 dependencies {
     if(artifactVersion == "project") {
-        compile project(':gdx-pay-client')
+        api project(':gdx-pay-client')
     }
     else{
-        compile "com.xuexue:gdx-pay-client:$artifactVersion"
+        api "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
     compile "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
