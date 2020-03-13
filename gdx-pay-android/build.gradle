@@ -18,7 +18,7 @@ sourceSets {
 
 dependencies {
     if(artifactVersion == "project") {
-        compile project(':gdx-pay-client')
+        compile project(':LibGdxPayClient')
     }
     else{
         compile "com.xuexue:gdx-pay-client:$artifactVersion"
