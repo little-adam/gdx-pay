@@ -11,7 +11,7 @@ targetCompatibility = 1.6
 
 dependencies {
     if(artifactVersion == "project") {
-        api project(':gdx-pay-client')
+        api project(':LibGdxPayClient')
     }
     else{
         api "com.xuexue:gdx-pay-client:$artifactVersion"
