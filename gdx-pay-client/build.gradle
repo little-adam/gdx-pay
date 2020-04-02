@@ -26,7 +26,7 @@ dependencies {
 
     compile "com.badlogicgames.gdx:gdx:${gdxVersion}"
 
-    testCompile "junit:junit:${junitVersion}"
+    testImplementation "junit:junit:${junitVersion}"
 }
 
 apply from: "$gradleDir/lib_maven.gradle"

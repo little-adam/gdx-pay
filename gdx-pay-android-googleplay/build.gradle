@@ -50,10 +50,10 @@ dependencies {
         compile "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
-    testCompile "junit:junit:${junitVersion}"
-    testCompile "org.mockito:mockito-core:${mockitoVersion}"
-    testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-    testCompile "org.assertj:assertj-core:${assertJVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    testImplementation "org.assertj:assertj-core:${assertJVersion}"
     compile "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
     compile "com.google.code.findbugs:jsr305:${jsr305Version}"
 
