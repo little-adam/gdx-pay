@@ -17,7 +17,7 @@ dependencies {
         api "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
-    api files(moe.sdk.getCoreJar(), moe.getPlatformJar())
+    // api files(moe.getCoreJar(), moe.getPlatformJar())
 }
 
 apply from: "$gradleDir/lib_maven.gradle"
