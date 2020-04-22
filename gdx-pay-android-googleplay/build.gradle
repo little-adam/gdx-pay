@@ -50,15 +50,15 @@ dependencies {
         compile "com.xuexue:gdx-pay-client:$artifactVersion"
     }
 
-    testCompile "junit:junit:${junitVersion}"
-    testCompile "org.mockito:mockito-core:${mockitoVersion}"
-    testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-    testCompile "org.assertj:assertj-core:${assertJVersion}"
-    compile "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
-    compile "com.google.code.findbugs:jsr305:${jsr305Version}"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    testImplementation "org.assertj:assertj-core:${assertJVersion}"
+    implementation "com.badlogicgames.gdx:gdx-backend-android:${gdxVersion}"
+    implementation "com.google.code.findbugs:jsr305:${jsr305Version}"
 
     // versions >= 24.0.0 do not work with minSdkVersion=8.0
-    compile "com.android.support:support-v4:${androidSupportVersion}"
+    implementation "com.android.support:support-v4:${androidSupportVersion}"
 }
 
 tasks.withType(Test) {
