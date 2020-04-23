@@ -10,11 +10,12 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 dependencies {
-    if(artifactVersion == "project") {
+    // gdx pay client
+    if(LibGdxPay == "project") {
         api project(':LibGdxPayClient')
     }
     else{
-        api "com.xuexue:gdx-pay-client:$artifactVersion"
+        api "com.xuexue:gdx-pay-client:$LibGdxPay"
     }
 
     // api files(moe.getCoreJar(), moe.getPlatformJar())
