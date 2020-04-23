@@ -43,11 +43,11 @@ configurations {
 }
 
 dependencies {
-    if(LibGdxPayClient == "project") {
+    if(LibGdxPay == "project") {
         compile project(':LibGdxPayClient')
     }
     else{
-        compile "com.xuexue:gdx-pay-client:$LibGdxPayClient"
+        compile "com.xuexue:gdx-pay-client:$LibGdxPay"
     }
 
     testImplementation "junit:junit:${junitVersion}"
