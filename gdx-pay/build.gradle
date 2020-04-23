@@ -11,8 +11,8 @@ targetCompatibility = 1.6
 dependencies {
     compile "com.google.code.findbugs:jsr305:${jsr305Version}"
 
-    testCompile "junit:junit:${junitVersion}"
-    testCompile "org.assertj:assertj-core:${assertJVersion}"
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.assertj:assertj-core:${assertJVersion}"
 }
 
 apply from: "$gradleDir/lib_maven.gradle"
